@@ -44,7 +44,7 @@ transform-origin: center;
 }
 
 .player-name.active{
-animation: scale 1s linear forwards;
+animation: scale 0.5s linear forwards;
 }
 
 @keyframes scale{
@@ -69,6 +69,7 @@ transition: all 2s;
 .overlay{
 transform: translateY(100%);
 background: url('images/Emery-thumb-up.png') no-repeat bottom/contain;
+transition: 1s;
 }
 .overlay.active{
 display: block;
@@ -79,13 +80,33 @@ transform: translateY(0);
   position: absolute;
   right: 10px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(0,-50%);
   height: 90%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.8);
   width: 10%;
   border-radius: 5px;
   display: flex;
   z-index: 5;
+  transition: 1s;
+}
+.players-list.slide{
+  transform: translate(0,-50%)
+}
+.trigger{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-100%, -50%);
+  width: 25px;
+  height: 50px;
+  color: gold;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: inherit;
+  cursor: pointer;
+  display: none;
 }
 .players-list ul{
   padding: 0;
@@ -97,7 +118,7 @@ transform: translateY(0);
   height: 100%;
 }
 .players-list ul li {
-  color: grey;
+  color: #f4f4f4;
 }
 
 @keyframes slide{
@@ -145,28 +166,36 @@ position: absolute;
 }
 
 @media(max-width:880px){
-.players-list {
-display: none;
-}
-.memory-game{
-height: 60vh;
-}
+
+    .players-list {
+        width: 90%;
+        transform: translate(100%, -50%);
+      }
+    .trigger{
+      display: block;
+     }
+
+    .memory-game{
+        height: 70vh;
+        width: 95%;
+     }
 
 }
 
 @media(max-width:568px){
-  body{
-  padding: 0 20px;
-  }
-  .memory-game{
-  width: 95%;
-  height: 95vh;
-  }
-  .memory-card {
-  width: calc(25% - 10px);
-  height: calc(12.5% - 10px);
-  }
-  .player-name{
-  font-size: 3rem;
-  }
+
+    body{
+        padding: 0 20px;
+    }
+    .memory-game{
+        width: 95%;
+        height: 95vh;
+    }
+    .memory-card {
+        width: calc(25% - 10px);
+        height: calc(12.5% - 10px);
+    }
+    .player-name{
+        font-size: 3rem;
+    }
 }

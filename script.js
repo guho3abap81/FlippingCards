@@ -1,25 +1,26 @@
 const cards = document.querySelectorAll(".memory-card");
 const player = document.querySelector(".player-name");
 const list = document.querySelector(".players-list ul");
+const trigger = document.querySelector(".trigger");
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
 
 
 function flipCard(){
-if(lockBoard) return;
-if(this === firstCard) return;
-this.classList.add("flip");
+   if(lockBoard) return;
+    if(this === firstCard) return;
+     this.classList.add("flip");
 
- if(!hasFlippedCard){
-    //fist click
-    hasFlippedCard = true;
-    firstCard = this;
-    return;
-  }
-    //second click
-    secondCard = this;
-    checkForMatch();
+       if(!hasFlippedCard){
+          //fist click
+          hasFlippedCard = true;
+          firstCard = this;
+          return;
+        }
+          //second click
+          secondCard = this;
+          checkForMatch();
 }
 
 //check if cards match
@@ -39,7 +40,7 @@ function disableCards(){
   setTimeout(gameFinished,1000);
   setTimeout(()=>{
   player.classList.remove("active");
-  },2000)
+},1000)
 }
 
 //if there is no match
@@ -67,16 +68,15 @@ const cards = document.querySelectorAll(".memory-card");
        if(card.classList.contains('flip')){
        Flipped.push(card);
 
-const names = document.querySelectorAll(".players-list ul li");
+       const names = document.querySelectorAll(".players-list ul li");
 
        names.forEach((li)=>{
          if(li.textContent === card.dataset.name){
            li.style.color = "#fcc600";
-         }
-
-       });
+             }
+          });
        }
-     })
+     });
 
     if(Flipped.length === cards.length){
         document.querySelector('.overlay').classList.add("active");
@@ -97,6 +97,14 @@ function playersList(){
 
   });
 }
+
+//show the players-list on smaller screens
+trigger.addEventListener("click", ()=>{
+  const playersList = document.querySelector(".players-list");
+  playersList.classList.add("slide");
+
+  setTimeout(()=> playersList.classList.remove("slide"),3000);
+})
 
 playersList();
 
